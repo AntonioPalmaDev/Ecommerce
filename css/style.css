@@ -1,0 +1,264 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 20px;
+  text-align: center;
+  width: 100vw;
+}
+
+/* Cabeçalho */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #4b0082; 
+  color: #fff;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  gap: 15px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 15px;
+  transition: opacity 0.2s;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+/* Grade de produtos */
+#product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 10px; 
+}
+
+
+/* Cartão do produto */
+.product {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+ width: 300px;
+  margin: 15px; /* Espaçamento entre os produtos */
+  display: inline-block; /* Faz os produtos se alinharem na horizontal */
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+}
+
+.product img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: 90%; /* Faz com que a imagem ocupe 100% da largura do contêiner */
+  
+}
+
+.product h2 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #4b0082;
+}
+
+.product p {
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+/* Botões */
+button {
+  padding: 8px 16px;
+  background-color: #4b0082;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #360061;
+}
+
+/* Carrinho */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px; 
+  padding: 20px;
+}
+
+.button-voltar {
+  padding: 8px 16px; 
+  background-color: #4b0082;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.9rem; 
+}
+
+.button-voltar:hover {
+  background-color: #3e007d;
+}
+.h1 {
+  font-size: 1.8rem;
+  color: #4b0082;
+  margin: 0;
+  font-weight: 600;
+  flex-grow: 1; 
+}
+#cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.cart-item img {
+  max-width: 80px; 
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.cart-item p {
+  flex-grow: 1;
+  font-size: 1rem;
+  color: #222;
+  margin: 0;
+}
+
+.cart-item button {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-item button:hover {
+  background-color: #e60000;
+}
+
+#clear-cart {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#clear-cart:hover {
+  background-color: #e60000;
+}
+
+
+/*Notificação*/
+
+#notificacao {
+    position: fixed;
+    top: -100px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    z-index: 999;
+}
+
+#notificacao.show {
+    top: 25px; 
+    opacity: 1;
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden; 
+    opacity: 0; 
+    top: -100px; 
+    transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#search-bar {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  width: 250px; /* Tamanho da barra de pesquisa */
+}
+
+#search-button {
+  background-color: #fff;
+  color: #4b0082;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#search-button:hover {
+  background-color: #f2f2f2;
+}
