@@ -24,16 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.classList.add("cart-item");
       div.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" class="product-image" />
-        <p>${product.name} - R$ ${product.price.toFixed(2)}</p>
-        <div>
-          <button class="adjust-quantity" data-id="${product.id}" data-action="decrease">-</button>
-          <span class="quantity">${item.quantity}</span>
-          <button class="adjust-quantity" data-id="${product.id}" data-action="increase">+</button>
-        </div>
-        <p>Total: R$ ${(product.price * item.quantity).toFixed(2)}</p>
-        <button class="remove-item" data-id="${product.id}">🗑️ Remover</button>
-      `;
+  <img src="${product.image}" alt="${product.name}" class="product-image" />
+  
+  <div class="cart-info">
+    <p class="product-name">${product.name}</p>
+    <p class="product-price">R$ ${product.price.toFixed(2)}</p>
+  </div>
+
+  <div class="quantity-controls">
+    <button class="adjust-quantity" data-id="${product.id}" data-action="decrease">-</button>
+    <span class="quantity">${item.quantity}</span>
+    <button class="adjust-quantity" data-id="${product.id}" data-action="increase">+</button>
+  </div>
+
+  <p class="total">R$ ${(product.price * item.quantity).toFixed(2)}</p>
+  
+  <button class="remove-item" data-id="${product.id}">🗑️</button>
+`;
+
       cartItems.appendChild(div);
     });
 
@@ -98,5 +106,5 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCart();
   }
 
-  updateCart(); // Inicializa o carrinho ao carregar a página
+  updateCart(); 
 });

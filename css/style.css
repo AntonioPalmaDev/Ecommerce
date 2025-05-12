@@ -22,7 +22,6 @@ header {
   padding: 15px 20px;
   background-color: #4b0082; 
   color: #fff;
-  border-radius: 8px;
   gap: 5px;
 }
 
@@ -34,6 +33,7 @@ nav a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
+  font-size: 30px;
   margin-left: 15px;
   transition: opacity 0.2s;
 }
@@ -117,15 +117,18 @@ button:hover {
   justify-content: flex-start;
   gap: 15px; 
   padding: 20px;
+  
 }
 
 .button-voltar {
-  padding: 8px 16px; 
+  padding: 10px 16px; 
   background-color: #4b0082;
   color: white;
+  font-size: 30px;
+  font-weight: bold;
   text-decoration: none;
   border-radius: 5px;
-  font-size: 0.9rem; 
+ 
 }
 
 .button-voltar:hover {
@@ -135,42 +138,61 @@ button:hover {
   font-size: 1.8rem;
   color: #4b0082;
   margin: 0;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 50px;
   flex-grow: 1; 
 }
 #cart-items {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  max-width: 900px; /* ou 80% se preferir relativo */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9; /* fundo leve */
+  border-radius: 8px;
+  text-align: center;
 }
 
 .cart-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  gap: 15px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  width: 100%;
+  margin-bottom: 15px;
 }
 
 .cart-item img {
-  max-width: 80px; 
+  max-width: 80px;
   border-radius: 8px;
-  margin-right: 15px;
 }
 
-.cart-item p {
-  flex-grow: 1;
-  font-size: 1rem;
-  color: #222;
+.cart-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-name {
+  font-weight: bold;
   margin: 0;
 }
 
-.cart-item button {
-  background-color: #ff4d4d;
+.product-price {
+  margin: 0;
+  color: #555;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity-controls button {
+  background-color: #4b0082;
   color: white;
   padding: 5px 10px;
   border: none;
@@ -178,24 +200,26 @@ button:hover {
   cursor: pointer;
 }
 
-.cart-item button:hover {
-  background-color: #e60000;
+.total {
+  width: 100px;
+  text-align: center;
+  margin: 0;
+  font-weight: bold;
+
 }
 
-#clear-cart {
+.remove-button, .remove-item {
   background-color: #ff4d4d;
   color: white;
-  padding: 10px 16px;
+  padding: 6px 10px;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
 }
 
-#clear-cart:hover {
-  background-color: #e60000;
+.remove-button, .remove-item:hover {
+  background-color: #4b0082;
 }
-
 
 /*Notificação*/
 
@@ -227,8 +251,20 @@ button:hover {
     transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
 }
 
-/* Responsivo */
-@media (max-width: 600px) {
+@media (max-width: 1450px) {
+  header {
+    width: 100%;
+    text-align: center;
+  }
+
+  #product-list {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1060px) {
   header {
     flex-direction: column;
     text-align: center;
@@ -237,19 +273,27 @@ button:hover {
   nav {
     margin-top: 10px;
   }
+
+  #product-list {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+  }
+}
+@media (max-width: 800px) {
+  #product-list {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 20px;
+  }
+  .search-container {
+    width: 100%;
+    align-items: center;
+  }
+ 
   
 }
-@media (max-width: 1024px) {
-  #product-list {
-    grid-template-columns: repeat(2, 1fr); /* 2 por linha em tablets */
-  }
-}
 
-@media (max-width: 600px) {
-  #product-list {
-    grid-template-columns: 1fr; /* 1 por linha no celular */
-  }
-}
 
 .search-container {
   display: flex;
@@ -279,3 +323,36 @@ button:hover {
   
 }
 
+
+
+
+/* categorias*/
+
+.categorias {
+  background-color: #4b0082;
+  padding: 10px 0;
+}
+
+.categorias ul {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categorias li a {
+  color: white;
+  text-decoration: none;
+  font-weight: lighter;
+  font-size: 20px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.categorias li a:hover,
+.categorias li a.active {
+  background-color: #6a0dad;
+}
