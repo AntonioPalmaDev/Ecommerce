@@ -17,14 +17,13 @@ body {
 /* Cabeçalho */
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 15px 20px;
   background-color: #4b0082; 
   color: #fff;
   border-radius: 8px;
-  margin-bottom: 30px;
-  gap: 15px;
+  gap: 5px;
 }
 
 header h1 {
@@ -46,9 +45,13 @@ nav a:hover {
 /* Grade de produtos */
 #product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-  gap: 10px; 
+  grid-template-columns: repeat(4, 1fr); /* força 4 colunas */
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
 }
+
+
 
 
 /* Cartão do produto */
@@ -198,8 +201,8 @@ button:hover {
 
 #notificacao {
     position: fixed;
-    top: -100px; 
-    left: 50%;
+    top: -150px; 
+    right: -50px;
     transform: translateX(-50%);
     background-color: #333;
     color: white;
@@ -212,7 +215,7 @@ button:hover {
 }
 
 #notificacao.show {
-    top: 25px; 
+    top: 100px; 
     opacity: 1;
     visibility: visible;
 }
@@ -220,7 +223,7 @@ button:hover {
 .hidden {
     visibility: hidden; 
     opacity: 0; 
-    top: -100px; 
+    top: -150px; 
     transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
 }
 
@@ -234,31 +237,45 @@ button:hover {
   nav {
     margin-top: 10px;
   }
+  
+}
+@media (max-width: 1024px) {
+  #product-list {
+    grid-template-columns: repeat(2, 1fr); /* 2 por linha em tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  #product-list {
+    grid-template-columns: 1fr; /* 1 por linha no celular */
+  }
 }
 
 .search-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
 }
 
 #search-bar {
   padding: 8px 12px;
   font-size: 1rem;
-  border: none;
-  border-radius: 4px;
-  width: 250px; /* Tamanho da barra de pesquisa */
+  border:none;
+  width: 500px; 
+  outline: none;
 }
+
+
 
 #search-button {
-  background-color: #fff;
-  color: #4b0082;
+  background-color: white;
   border: none;
-  border-radius: 4px;
   padding: 8px 12px;
   cursor: pointer;
+  
 }
 
-#search-button:hover {
-  background-color: #f2f2f2;
-}
