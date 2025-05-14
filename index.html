@@ -2,13 +2,13 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Loja Virtual</title>
+  <title>LB imports</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
      <div id="notificacao" class="hidden">Mensagem aqui</div>
   <header>
-    <h1>Minha Loja</h1>
+    <h1>LB imports</h1>
      <div class="search-container">
       <input type="text" id="search-bar" placeholder="Pesquise por produtos...">
       <button id="search-button">
@@ -24,17 +24,25 @@
   <div class="categorias">
     <nav>
       <ul>
-        <li><a href="index.html" class="active">Todos</a></li>
-        <li><a href="#">Eletro & Tech</a></li>
-        <li><a href="#">Upperwear</a></li>
-        <li><a href="#">Acessórios</a></li>
-        <li><a href="#">Footwear</a></li>
+        <li><a href="#"   class="active" data-category="todos">     Todos</a></li>
+        <li><a href="#"   data-category="eletro">    Eletro & Tech</a></li>
+        <li><a href="#"   data-category="upperwear"> Upperwear</a></li>
+        <li><a href="#"   data-category="acessorios">Acessórios</a></li>
+        <li><a href="#"   data-category="footwear">  Footwear</a></li>
       </ul>
     </nav>
-
-
-
   </div>
+
+  <div class="filtro">
+  <label for="sort">Ordenar por:</label>
+  <select id="sort">
+    <option value="default">Padrão</option>
+    <option value="preco-asc">Preço: Menor para Maior</option>
+    <option value="preco-desc">Preço: Maior para Menor</option>
+    <option value="nome-asc">Nome: A → Z</option>
+    <option value="nome-desc">Nome: Z → A</option>
+  </select>
+</div>
 
   <main id="product-list"></main>
 

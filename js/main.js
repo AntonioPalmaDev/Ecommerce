@@ -1,33 +1,34 @@
-// Espera o DOM ser carregado para inserir os produtos na tela
+
 document.addEventListener("DOMContentLoaded", () => {
   const productList = document.getElementById("product-list");
 
-  // Certifique-se que a lista de produtos está disponível
+ 
   if (products && Array.isArray(products)) {
-    displayProducts(products); // Exibe todos os produtos inicialmente
+    aplicarFiltros();
+
   }
 });
 
-// Define a função addToCart fora do DOMContentLoaded
+
 function addToCart(productId) {
-  // Recupera o carrinho ou inicializa como um array vazio
+ 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Verifica se o produto já está no carrinho
+  
   const productIndex = cart.findIndex(item => item.id === productId);
 
-  // Se o produto já estiver no carrinho, aumenta a quantidade
+  
   if (productIndex !== -1) {
     cart[productIndex].quantity += 1;
   } else {
-    // Caso o produto não esteja no carrinho, adiciona o item com quantidade 1
+   
     cart.push({ id: productId, quantity: 1 });
   }
 
-  // Armazena o carrinho atualizado no localStorage
+ 
   localStorage.setItem("cart", JSON.stringify(cart));
 
-  // Exibe a notificação
+  
   showNotification('Produto adicionado ao carrinho!', 'sucesso');
 }
 
@@ -44,34 +45,34 @@ function showNotification(message, type) {
     notification.classList.remove('show');
     setTimeout(() => {
       notification.classList.add('hidden');
-    }, 400); // espera a transição acabar
+    }, 400); 
   }, 5000);
 }
 
-// Supondo que seus produtos estejam armazenados na variável 'products'
+
 
 // Barra de pesquisa
 const searchBar = document.getElementById("search-bar");
 const searchButton = document.getElementById("search-button");
 
 searchButton.addEventListener("click", searchProducts);
-searchBar.addEventListener("input", searchProducts); // Para pesquisa em tempo real
+searchBar.addEventListener("input", searchProducts); 
 
 function searchProducts() {
   const query = searchBar.value.toLowerCase();
 
-  // Filtra os produtos pela pesquisa
+  
   const filteredProducts = products.filter(product => 
     product.name.toLowerCase().includes(query)
   );
 
-  // Exibe os produtos filtrados
+  
   displayProducts(filteredProducts);
 }
 
 function displayProducts(productsToDisplay) {
-  const productList = document.getElementById("product-list"); // Garantir que estamos usando o elemento correto
-  productList.innerHTML = ""; // Limpa a lista atual de produtos
+  const productList = document.getElementById("product-list"); 
+  productList.innerHTML = ""; 
 
   productsToDisplay.forEach(product => {
     const div = document.createElement("div");
@@ -84,4 +85,56 @@ function displayProducts(productsToDisplay) {
     `;
     productList.appendChild(div);
   });
+}
+
+document.querySelectorAll(".categorias a").forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+
+
+    document.querySelectorAll(".categorias a").forEach(l => l.classList.remove("active"));
+    e.target.classList.add("active");
+
+    const category = e.target.dataset.category;
+
+    if (category === "todos") {
+      aplicarFiltros();
+; 
+    } else {
+      const filtered = products.filter(product => product.category === category);
+      displayProducts(filtered);
+    }
+  });
+});
+
+const sortSelect = document.getElementById("sort");
+
+sortSelect.addEventListener("change", () => {
+  aplicarFiltros();
+});
+function aplicarFiltros() {
+  const categoriaAtiva = document.querySelector(".categorias a.active")?.dataset.category || "todos";
+  const sortOption = sortSelect.value;
+
+  let produtosFiltrados = categoriaAtiva === "todos"
+    ? [...products]
+    : products.filter(p => p.category === categoriaAtiva);
+
+  // Ordenação
+  switch (sortOption) {
+    case "preco-asc":
+      produtosFiltrados.sort((a, b) => a.price - b.price);
+      break;
+    case "preco-desc":
+      produtosFiltrados.sort((a, b) => b.price - a.price);
+      break;
+    case "nome-asc":
+      produtosFiltrados.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+    case "nome-desc":
+      produtosFiltrados.sort((a, b) => b.name.localeCompare(a.name));
+      break;
+  }
+
+  displayProducts(produtosFiltrados);
 }

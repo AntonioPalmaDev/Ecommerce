@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    
+<title>Pagina de Login e Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="notificacao" class="hidden">Mensagem aqui</div>
+
+    <div class="scene">
+        <div class="card" id="flip-card">
+        
+          <div class="card-face card-front">
+            <div class="container" id="container">
+              <div class="form-container sign-up-container">
+                <form action="#" method="POST" onsubmit="handleCadastro(event)">
+                  <h2>Criar Conta</h2>
+                  <input type="text" placeholder="Nome" name="nome_usuario" required />
+                  <input type="email" placeholder="Email" name="email_usuario" required />
+                  <input type="text" placeholder="Telefone" name="telefone_usuario" required />
+                  <select name="tipo_usuario" required>
+                    <option value="">Tipo de Usuário</option>
+                    <option value="Admim">Admim</option>
+                    <option value="Cliente">Cliente</option>
+                  
+                  </select>
+                  <input type="password" placeholder="Senha" name="senha" required />
+                  <button type="submit">Cadastrar</button>
+                </form>
+              </div>
+    
+              <div class="form-container sign-in-container">
+                <form action="#" method="POST"onsubmit="handleLogin(event)">
+                  <h2>Login</h2>
+                  <input type="email" placeholder="Email" name="email" required />
+                  <input type="password" placeholder="Senha" name="senha" required />
+                  <button type="submit">Entrar</button>
+                  <a href="#" class="esqueci-senha" onclick="flipCard()">Esqueci minha senha</a>
+                </form>
+              </div>
+    
+              <div class="overlay-container">
+                <div class="overlay">
+                  <div class="overlay-panel overlay-left">
+                    <h2>Já é cliente?</h2>
+                    <p>Faça login e aproveite nossas ofertas exclusivas</p>
+
+                    <button class="ghost" id="signIn">Login</button>
+                  </div>
+                  <div class="overlay-panel overlay-right">
+                   <h2>Seja bem-vindo!</h2>
+                    <p>Cadastre-se para realizar suas compras com segurança</p>
+
+                    <button class="ghost" id="signUp">Cadastrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="card-face card-back">
+            <form action="#" method="POST" class="recuperar-form" onsubmit="handleRecuperar(event)">
+              <h2>Recuperar Senha</h2>
+              <input type="email" placeholder="Digite seu email" name="email" required />
+              <button type="submit">Enviar Link</button>
+              <button type="button" onclick="flipCard()">Voltar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
