@@ -2,13 +2,16 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>LB imports</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
      <div id="notificacao" class="hidden">Mensagem aqui</div>
   <header>
-    <h1>LB imports</h1>
+    <h1><img src="img/logo2.png" alt="logo - lb" class="img-logo" loading="lazy">
+</h1>
      <div class="search-container">
       <input type="text" id="search-bar" placeholder="Pesquise por produtos...">
       <button id="search-button">
@@ -20,8 +23,9 @@
     <nav>
       <a href="cart.html">🛒 Carrinho</a>
     </nav>
+  
   </header>
-  <div class="categorias">
+    <div class="categorias">
     <nav>
       <ul>
         <li><a href="#"   class="active" data-category="todos">     Todos</a></li>
@@ -32,6 +36,7 @@
       </ul>
     </nav>
   </div>
+  
 
   <div class="filtro">
   <label for="sort">Ordenar por:</label>
@@ -45,8 +50,6 @@
 </div>
 
   <main id="product-list"></main>
-
-  <script src="js/products.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
