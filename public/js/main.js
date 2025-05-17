@@ -28,7 +28,8 @@ function renderProducts(productsToRender) {
   productsToRender.forEach(product => {
     productList.innerHTML += `
       <article class="product">
-        <img src="${product.image}" alt="${product.name}">
+        <img src="${encodeURI(product.image)}" alt="${product.name}">
+
         <h3>${product.name}</h3>
         <p>R$ ${product.price.toFixed(2)}</p>
         <button data-id="${product.id}" class="add-to-cart">Adicionar ao carrinho</button>
@@ -82,6 +83,21 @@ sortSelect.addEventListener('change', () => {
   }
   renderProducts(filteredProducts);
 });
+const user = JSON.parse(localStorage.getItem('user'));
+const token = localStorage.getItem('token');
+
+if (user) {
+  document.getElementById('user-info').innerText = `Olá, ${user.nome}`;
+  document.getElementById('logout-btn').style.display = 'inline-block';
+} else {
+  window.location.href = '/login.html';
+}
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+  localStorage.clear();
+  window.location.href = '/login.html';
+});
+
 
 // Inicialização
 fetchProducts();
