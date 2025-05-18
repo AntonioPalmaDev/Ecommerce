@@ -87,7 +87,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 const token = localStorage.getItem('token');
 
 if (user) {
-  document.getElementById('user-info').innerText = `Olá, ${user.nome}`;
+ // document.getElementById('user-info').innerText = `Olá, ${user.name}`;
   document.getElementById('logout-btn').style.display = 'inline-block';
 } else {
   window.location.href = '/login.html';

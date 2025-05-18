@@ -62,7 +62,12 @@ header h1 {
   width: 300px;
   height: auto;
 }
-
+nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 nav a {
   color: #fff;
   text-decoration: none;
@@ -70,10 +75,23 @@ nav a {
   font-size: 30px;
   margin-left: 15px;
   transition: opacity 0.2s;
+  
 }
 
 nav a:hover {
   opacity: 0.7;
+}
+
+#logout-btn{
+
+
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px; 
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 /* ========== 4. PRODUTOS ========== */

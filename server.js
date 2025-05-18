@@ -54,7 +54,14 @@ app.post('/api/auth/register', async (req, res) => {
   if (error) return res.status(500).json({ message: 'Erro ao registrar.', error });
 
   res.status(201).json({ message: 'Usuário registrado com sucesso!' });
-});
+  if (error) {
+  console.error('Erro ao inserir usuário:', error); // <-- Adicione isso
+  return res.status(500).json({ message: 'Erro ao registrar.', error });
+}
+
+}
+
+);
 
 // Rota de login
 app.post('/api/auth/login', async (req, res) => {

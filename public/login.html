@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     
 <title>Pagina de Login e Cadastro</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <div id="notificacao" class="hidden">Mensagem aqui</div>
@@ -17,16 +17,15 @@
               <div class="form-container sign-up-container">
                 <form action="#" method="POST" onsubmit="handleCadastro(event)">
                   <h2>Criar Conta</h2>
-                  <input type="text" placeholder="Nome" name="nome_usuario" required />
-                  <input type="email" placeholder="Email" name="email_usuario" required />
-                  <input type="text" placeholder="Telefone" name="telefone_usuario" required />
-                  <select name="tipo_usuario" required>
+                  <input type="text" placeholder="Nome" name="name" required />
+                  <input type="email" placeholder="Email" name="email" required />
+                  <select name="type" required>
                     <option value="">Tipo de Usuário</option>
-                    <option value="Admim">Admim</option>
+                    <option value="ADMIN">ADMIN</option>
                     <option value="Cliente">Cliente</option>
                   
                   </select>
-                  <input type="password" placeholder="Senha" name="senha" required />
+                  <input type="password" placeholder="Senha" name="password" required />
                   <button type="submit">Cadastrar</button>
                 </form>
               </div>
