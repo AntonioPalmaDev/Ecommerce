@@ -38,7 +38,7 @@ app.post('/api/auth/register', async (req, res) => {
 
   const { data: existingUser } = await supabase
     .from('users')
-    .select('id')
+  
     .eq('email', email)
     .single();
 
@@ -51,13 +51,13 @@ app.post('/api/auth/register', async (req, res) => {
     type: type || 'CLIENTE'
   });
 
-  if (error) return res.status(500).json({ message: 'Erro ao registrar.', error });
-
-  res.status(201).json({ message: 'Usuário registrado com sucesso!' });
   if (error) {
-  console.error('Erro ao inserir usuário:', error); // <-- Adicione isso
+  console.error('Erro ao inserir usuário:', error);
   return res.status(500).json({ message: 'Erro ao registrar.', error });
 }
+
+res.status(201).json({ message: 'Usuário registrado com sucesso!' });
+
 
 }
 
@@ -101,9 +101,9 @@ function adminMiddleware(req, res, next) {
 
 // Criar produto (ADMIN)
 app.post('/api/products', authMiddleware, adminMiddleware, async (req, res) => {
-  const { name, price, image } = req.body;
+  const { name, price, category, image } = req.body;
 
-  const { error } = await supabase.from('products').insert({ name, price, image });
+  const { error } = await supabase.from('products').insert({ name, price,category, image });
 
   if (error) return res.status(500).json({ message: 'Erro ao criar produto.', error });
 
@@ -122,11 +122,11 @@ app.get('/api/products', async (req, res) => {
 // Editar produto (ADMIN)
 app.put('/api/products/:id', authMiddleware, adminMiddleware, async (req, res) => {
   const { id } = req.params;
-  const { name, price, image } = req.body;
+  const { name, price,category, image } = req.body;
 
   const { error } = await supabase
     .from('products')
-    .update({ name, price, image })
+    .update({ name, price,category, image })
     .eq('id', id);
 
   if (error) return res.status(500).json({ message: 'Erro ao atualizar produto.' });

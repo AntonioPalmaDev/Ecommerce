@@ -40,7 +40,7 @@ async function handleCadastro(event) {
   const name = form.name.value;
   const email = form.email.value;
   const password = form.password.value;
-  const type = form.type.value || 'CLIENTE';
+  const type = form.type.value || 'Cliente' || 'ADMIN'; 
 
   try {
     const response = await fetch('/api/auth/register', {

@@ -1,10 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
   const cartItems = document.getElementById("cart-items");
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  function updateCart() {
+  window.products = []; // products global
+
+async function fetchProducts() {
+  try {
+    const res = await fetch('http://localhost:3001/api/products');
+    window.products = await res.json();
+    console.log("Produtos carregados:", window.products); // 👈 Aqui
+    updateCart();
+  } catch (error) {
+    console.error('Erro ao carregar produtos:', error);
+  }
+}
+
+
+  function showNotification(message, type) {
+    const notification = document.getElementById('notificacao');
+    if (!notification) return;
+
+    notification.textContent = message;
+    notification.className = type;
+    notification.classList.remove('hidden');
+
+    setTimeout(() => {
+      notification.classList.add('hidden');
+    }, 2000);
+  }
+
+  window.updateCart = function() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
     cartItems.innerHTML = "";
-    cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     if (cart.length === 0) {
       cartItems.innerHTML = "<p>Seu carrinho está vazio.</p>";
@@ -15,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalItems = 0;
 
     cart.forEach(item => {
-      const product = products.find(p => p.id === item.id);
+      const product = window.products.find(p => p.id === item.id);
       if (!product) return;
 
       total += product.price * item.quantity;
@@ -24,23 +50,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.classList.add("cart-item");
       div.innerHTML = `
-  <img src="${product.image}" alt="${product.name}" class="product-image" />
-  
-  <div class="cart-info">
-    <p class="product-name">${product.name}</p>
-    <p class="product-price">R$ ${product.price.toFixed(2)}</p>
-  </div>
-
-  <div class="quantity-controls">
-    <button class="adjust-quantity" data-id="${product.id}" data-action="decrease">-</button>
-    <span class="quantity">${item.quantity}</span>
-    <button class="adjust-quantity" data-id="${product.id}" data-action="increase">+</button>
-  </div>
-
-  <p class="total">R$ ${(product.price * item.quantity).toFixed(2)}</p>
-  
-  <button class="remove-item" data-id="${product.id}">🗑️</button>
-`;
+        <img src="${product.image}" alt="${product.name}" class="product-image" />
+        <div class="cart-info">
+          <p class="product-name">${product.name}</p>
+          <p class="product-price">R$ ${product.price.toFixed(2)}</p>
+        </div>
+        <div class="quantity-controls">
+          <button class="adjust-quantity" data-id="${product.id}" data-action="decrease">-</button>
+          <span class="quantity">${item.quantity}</span>
+          <button class="adjust-quantity" data-id="${product.id}" data-action="increase">+</button>
+        </div>
+        <p class="total">R$ ${(product.price * item.quantity).toFixed(2)}</p>
+        <button class="remove-item" data-id="${product.id}">🗑️</button>
+      `;
 
       cartItems.appendChild(div);
     });
@@ -65,15 +87,15 @@ document.addEventListener("DOMContentLoaded", () => {
     clearButton.style.cursor = "pointer";
     clearButton.addEventListener("click", () => {
       localStorage.removeItem("cart");
-      cartItems.innerHTML = "<p>Seu carrinho está vazio.</p>";
+      updateCart();
       showNotification("Carrinho Limpo", "sucesso");
     });
-
     cartItems.appendChild(clearButton);
 
     document.querySelectorAll(".adjust-quantity").forEach(button => {
       button.addEventListener("click", () => {
-        const id = parseInt(button.getAttribute("data-id"));
+       const id = button.getAttribute("data-id");
+
         const action = button.getAttribute("data-action");
         adjustQuantity(id, action);
       });
@@ -81,13 +103,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".remove-item").forEach(button => {
       button.addEventListener("click", () => {
-        const id = parseInt(button.getAttribute("data-id"));
+       const id = button.getAttribute("data-id");
+
         removeItem(id);
       });
     });
-  }
+  };
 
   function adjustQuantity(productId, action) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const item = cart.find(i => i.id === productId);
     if (!item) return;
 
@@ -101,10 +125,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function removeItem(productId) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart = cart.filter(item => item.id !== productId);
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCart();
   }
 
-  updateCart(); 
+  fetchProducts(); // chama fetch para carregar produtos e só depois atualiza carrinho
 });

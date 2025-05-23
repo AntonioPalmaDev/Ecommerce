@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Admin</title>
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <div id="notificacao" class="hidden">Mensagem aqui</div>
+
+  <header class="admin-header">
+    <h1>Painel Administrativo</h1>
+    <button onclick="window.location.href='index.html'" class="admin-back-button">
+      Voltar para a loja
+    </button>
+  </header>
+
+  <main class="admin-dashboard">
+  
+    <section class="admin-section admin-form-section">
+      <h2>Adicionar Produto</h2>
+      <form id="form-add-produto" class="admin-form">
+        <label for="name">Nome do Produto</label>
+        <input type="text" id="name" placeholder="Nome do produto" required />
+
+        <label for="price">Preço</label>
+        <input type="number" id="price" placeholder="Preço" required />
+
+        <label for="category">Categoria</label>
+        <select id="category" required>
+                    <option value="">Categoria</option>
+                    <option value="upperwear">Upperwear</option>
+                    <option value="acessorios">Acessorios</option>
+                  <option value="footwear">footwear</option>
+                  <option value="eletro">Tech</option>
+                  
+                  </select>
+        <label for="imagem">URL da Imagem</label>
+        <input type="text" id="image" placeholder="URL da imagem" />
+
+        <button type="submit">Adicionar</button>
+      </form>
+    </section>
+
+ 
+    <section class="admin-section admin-lista-section">
+      <h2>Produtos Cadastrados</h2>
+      <div id="lista-produtos" class="admin-produtos-lista"></div>
+    </section>
+  </main>
+
+  <script src="js/admin.js"></script>
+
+</body>
+</html>
