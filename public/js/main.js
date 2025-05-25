@@ -87,21 +87,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 5000);
   }
 
-  // Lógica logout e exibir botão, dentro do DOMContentLoaded
-  const user = JSON.parse(localStorage.getItem('user'));
-  const logoutBtn = document.getElementById('logout-btn');
+// Lógica logout e exibir botão, dentro do DOMContentLoaded
+const user = JSON.parse(localStorage.getItem('user'));
+const logoutBtn = document.getElementById('logout-btn');
+const btnAdmin = document.getElementById('btn-admin');
 
 if (!user) {
   window.location.href = '/login.html';
+} else {
+  if (logoutBtn) {
+    logoutBtn.style.display = 'inline-block';
+    logoutBtn.addEventListener('click', () => {
+      localStorage.clear();
+      window.location.href = '/login.html';
+    });
+  }
+
+  // Oculta o botão de admin se o usuário não for ADMIN
+  if (btnAdmin && user.type !== 'ADMIN') {
+    btnAdmin.style.display = 'none';
+  }
 }
 
-if (logoutBtn && user) {
-  logoutBtn.style.display = 'inline-block';
-  logoutBtn.addEventListener('click', () => {
-    localStorage.clear();
-    window.location.href = '/login.html';
-  });
-}
+
 
 
   // Filtros e buscas
@@ -147,6 +155,16 @@ if (logoutBtn && user) {
     }
     renderProducts(filteredProducts);
   });
+
+ const hamburguerBtn = document.getElementById('hamburguer-btn');
+  const menuLateral = document.getElementById('menu-lateral');
+
+if (hamburguerBtn && menuLateral) {
+    hamburguerBtn.addEventListener("click", () => {
+      menuLateral.classList.toggle("open");
+    });
+  }
+
 
   // Finalmente chama fetch para iniciar o app
   fetchProducts();

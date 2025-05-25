@@ -8,56 +8,74 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-     <div id="notificacao" class="hidden">Mensagem aqui</div>
-  <header>
-    <h1><img src="img/logo2.png" alt="logo - lb" class="img-logo" loading="lazy"></h1>
-     <div class="search-container">
-      <input type="text" id="search-bar" placeholder="Pesquise por produtos...">
-      <button id="search-button">
-        <img src="img/pesquisaicon.svg" alt="icone de pesquisa" width="20" height="20">
-      </button>
-     
-    </div>
+  <div id="notificacao" class="hidden">Mensagem aqui</div>
 
-    <nav class="nav-user">
-      <div id="user-info"></div>
-      
-      <button id="logout-btn" >Sair</button>
-
-     <div id="admin-controls" >
-
-      <button onclick="window.location.href='admin.html'">Area do ADM</button>
-    
-    </div>
-    <a href="cart.html">🛒</a>
-    </nav>
+ <!-- BARRA SUPERIOR COM MENU, LOGO E CARRINHO -->
+<header >
+  <!-- Menu hamburguer à esquerda -->
   
-  </header>
-    <div class="categorias">
+  <button class="hamburguer" id="hamburguer-btn">&#9776;</button>
+
+  <!-- Logo centralizada -->
+  
+    <img src="img/logo2.png" alt="logo - lb" class="img-logo" loading="lazy">
+  
+
+  <!-- Carrinho à direita -->
+  <a href="cart.html" class="cart-icon">🛒</a>
+
+</header>
+<!-- CAMPO DE BUSCA ABAIXO DO HEADER -->
+<div class="search-container">
+  <input type="text" id="search-bar" placeholder="Pesquise por produtos...">
+  <button id="search-button">
+    <img src="img/pesquisaicon.svg" alt="icone de pesquisa" width="20" height="20">
+  </button>
+</div>
+
+<div class="categorias" id="menu-categorias">
     <nav>
       <ul>
-        <li><a href="#"   class="active" data-category="todos">     Todos</a></li>
-        <li><a href="#"   data-category="eletro">    Tech</a></li>
-        <li><a href="#"   data-category="upperwear"> Upperwear</a></li>
-        <li><a href="#"   data-category="acessorios">Acessórios</a></li>
-        <li><a href="#"   data-category="footwear">  Footwear</a></li>
+        <li><a href="#" class="active" data-category="todos">Todos</a></li>
+        <li><a href="#" data-category="eletro">Tech</a></li>
+        <li><a href="#" data-category="upperwear">Upperwear</a></li>
+        <li><a href="#" data-category="acessorios">Acessórios</a></li>
+        <li><a href="#" data-category="footwear">Footwear</a></li>
       </ul>
     </nav>
   </div>
+<!-- MENU LATERAL HAMBURGUER (INICIALMENTE ESCONDIDO) -->
+<nav class="nav-user sidebar" id="menu-lateral">
+  <div id="user-info"></div>
+
+  <button id="logout-btn">Sair</button>
+
+  <div id="admin-controls">
+    <button id="btn-admin" onclick="window.location.href='admin.html'">Área do ADM</button>
+  </div>
+
+  <!-- CATEGORIAS -->
   
+</nav>
 
+
+  <!-- FILTRO DE PRODUTOS -->
   <div class="filtro">
-  <label for="sort">Ordenar por:</label>
-  <select id="sort">
-    <option value="default">Padrão</option>
-    <option value="preco-asc">Preço: Menor para Maior</option>
-    <option value="preco-desc">Preço: Maior para Menor</option>
-    <option value="nome-asc">Nome: A → Z</option>
-    <option value="nome-desc">Nome: Z → A</option>
-  </select>
-</div>
+    <label for="sort">Ordenar por:</label>
+    <select id="sort">
+      <option value="default">Padrão</option>
+      <option value="preco-asc">Preço: Menor para Maior</option>
+      <option value="preco-desc">Preço: Maior para Menor</option>
+      <option value="nome-asc">Nome: A → Z</option>
+      <option value="nome-desc">Nome: Z → A</option>
+    </select>
+  </div>
 
+  <!-- LISTAGEM DE PRODUTOS -->
   <main id="product-list"></main>
+
+
+
   <script src="js/main.js"></script>
 </body>
 </html>
