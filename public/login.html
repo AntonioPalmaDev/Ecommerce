@@ -2,7 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="img/LB.png">
 <title>Pagina de Login e Cadastro</title>
     <link rel="stylesheet" href="css/login.css">
 </head>
@@ -70,8 +71,51 @@
         </div>
       </div>
     
+<div class="mobile-container">
+
+  <!-- Login -->
+  <div id="login-form">
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+      <input type="email" placeholder="Email" name="email" required />
+      <input type="password" placeholder="Senha" name="senha" required />
+      <button type="submit">Entrar</button>
+      <a href="#" onclick="showRecuperar()">Esqueci minha senha</a>
+    </form>
+    <button onclick="showCadastro()">Cadastrar</button>
+  </div>
+
+  <!-- Cadastro -->
+  <div id="cadastro-form" style="display:none;">
+    <h2>Criar Conta</h2>
+    <form onsubmit="handleCadastro(event)">
+      <input type="text" placeholder="Nome" name="name" required />
+      <input type="email" placeholder="Email" name="email" required />
+      <select name="type" required>
+        <option value="">Tipo de Usuário</option>
+        <option value="ADMIN">Admin</option>
+        <option value="CLIENTE">Cliente</option>
+      </select>
+      <input type="password" placeholder="Senha" name="senha" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+    <button onclick="showLogin()">Voltar</button>
+  </div>
+
+  <!-- Recuperar senha -->
+  <div id="recuperar-form" style="display:none;">
+    <h2>Recuperar Senha</h2>
+    <form onsubmit="handleRecuperar(event)">
+      <input type="email" placeholder="Digite seu email" required />
+      <button type="submit">Enviar Link</button>
+    </form>
+    <button onclick="showLogin()">Voltar</button>
+  </div>
+
+</div>
 
 <script src="js/script.js"></script>
+ <script src="js/notify.js"></script>
 
 </body>
 </html>

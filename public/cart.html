@@ -4,21 +4,29 @@
   <meta charset="UTF-8">
   <title>Carrinho</title>
   <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="img/LB.png">
 </head>
 <body>
-     <div id="notificacao" class="hidden">Mensagem aqui</div>
+  <div id="notificacao" class="hidden">Mensagem aqui</div>
 
-<div class="header_cart">
-  <a href="index.html" class="button-voltar">Voltar</a>
-  <h1 class="h1_cart">Carrinho de Compras</h1>
-</div>
-  <div id="cart-items">
+  <div class="cart-container">
+    <div class="header_cart">
+      <a href="index.html" class="button-voltar">Voltar</a>
+      <h1 class="h1_cart">Carrinho de Compras</h1>
+    </div>
 
-<button id="clear-cart">🗑️ Limpar Carrinho</button>
+    <div id="cart-items" class="cart-items">
+      <!-- Itens do carrinho são renderizados aqui -->
+    </div>
+
+    
+    <div id="cart-summary" class="cart-summary">
+      <!-- Resumo do carrinho será inserido aqui -->
+    </div>
   </div>
 
-  
   <script src="js/cart.js"></script>
-  
-</body> 
+   <script src="js/notify.js"></script>
+</body>
 </html>

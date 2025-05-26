@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="shortcut icon" type="image/x-icon" href="img/LB.png">
   <title>LB imports</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -22,8 +22,11 @@
   
 
   <!-- Carrinho à direita -->
-  <a href="cart.html" class="cart-icon">🛒</a>
-
+  <button class="logout-btn" id="logout-btn-web">Sair</button>
+  <button id="btn-admin-web" onclick="window.location.href='admin.html'">ADM
+</button>
+  <a href="cart.html" class="cart-icon"><img id="carrinho" src="img/carrinho.svg" alt="carrinho-compras"> <span id="cart-count">0</span></a>
+  
 </header>
 <!-- CAMPO DE BUSCA ABAIXO DO HEADER -->
 <div class="search-container">
@@ -46,17 +49,32 @@
   </div>
 <!-- MENU LATERAL HAMBURGUER (INICIALMENTE ESCONDIDO) -->
 <nav class="nav-user sidebar" id="menu-lateral">
-  <div id="user-info"></div>
-
-  <button id="logout-btn">Sair</button>
-
-  <div id="admin-controls">
-    <button id="btn-admin" onclick="window.location.href='admin.html'">Área do ADM</button>
+  <div class="menu-header">
+     <div class="user-info">
+    <button class="logout-btn" id="logout-btn-mobile">SAIR</button>
+    
+  </div>
+    <button id="btn-admin" onclick="window.location.href='admin.html'">
+     ADM
+    </button>
+    <button id="close-menu" class="close-menu-btn">✕</button>
   </div>
 
-  <!-- CATEGORIAS -->
-  
+  <div  class="menu-list">
+    <nav class="menu-item">
+      <ul class="submenu">
+        <li><a href="#" class="active" data-category="todos">Todos</a></li>
+        <li><a href="#" data-category="eletro">Tech</a></li>
+        <li><a href="#" data-category="upperwear">Upperwear</a></li>
+        <li><a href="#" data-category="acessorios">Acessórios</a></li>
+        <li><a href="#" data-category="footwear">Footwear</a></li>
+      </ul>
+    </nav>
+   
+</div>
+
 </nav>
+
 
 
   <!-- FILTRO DE PRODUTOS -->
@@ -77,5 +95,6 @@
 
 
   <script src="js/main.js"></script>
+   <script src="js/notify.js"></script>
 </body>
 </html>

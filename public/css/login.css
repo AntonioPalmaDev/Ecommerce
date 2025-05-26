@@ -225,7 +225,18 @@ form {
   .card-front {
     z-index: 2;
   }
-
+#cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  display: none; /* Esconde quando for 0 */
+}
   .card-back {
     transform: rotateY(180deg);
     background: #ffffff;
@@ -256,3 +267,40 @@ form {
   .recuperar-form button {
     cursor: pointer;
   }
+input, select, button {
+  font-size: 16px;
+}
+/* Esconde versão mobile no desktop */
+.mobile-container {
+  display: none;
+}
+
+/* Mostra versão mobile quando a largura for até 768px */
+@media (max-width: 768px) {
+  .scene {
+    display: none;
+  }
+  .mobile-container {
+    display: block;
+    padding: 20px;
+  }
+
+  input, select, button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  button {
+    background-color: #4a00e0;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #3700b3;
+  }
+}

@@ -4,12 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const productList = document.getElementById('product-list');
   const searchBar = document.getElementById('search-bar');
   const sortSelect = document.getElementById('sort');
-  const categoryLinks = document.querySelectorAll('.categorias nav a');
+  const categoryLinks = document.querySelectorAll('.categorias nav a , .menu-list nav a');   
 
   let products = [];
   let filteredProducts = [];
   window.products = [];
+window.updateCart = function() {
+  const countElement = document.getElementById("cart-count");
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  if (totalItems > 0) {
+    countElement.textContent = totalItems;
+    countElement.style.display = 'inline-block';
+  } else {
+    countElement.style.display = 'none';
+  }
+};
   async function fetchProducts() {
     try {
       const res = await fetch('http://localhost:3001/api/products');
@@ -69,41 +81,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   localStorage.setItem('cart', JSON.stringify(cart));
   showNotification('Produto adicionado ao carrinho!', 'sucesso');
+   updateCart();
 }
 
 
-  function showNotification(message, type) {
-    const notification = document.getElementById('notificacao');
-    notification.textContent = message;
-    notification.style.backgroundColor = type === 'sucesso' ? '#4CAF50' : '#f44336';
-    notification.classList.add('show');
-    notification.classList.remove('hidden');
 
-    setTimeout(() => {
-      notification.classList.remove('show');
-      setTimeout(() => {
-        notification.classList.add('hidden');
-      }, 400);
-    }, 5000);
-  }
 
 // Lógica logout e exibir botão, dentro do DOMContentLoaded
 const user = JSON.parse(localStorage.getItem('user'));
-const logoutBtn = document.getElementById('logout-btn');
+const logoutBtns = document.querySelectorAll('.logout-btn'); // Pega todos os botões
 const btnAdmin = document.getElementById('btn-admin');
 
 if (!user) {
   window.location.href = '/login.html';
 } else {
-  if (logoutBtn) {
-    logoutBtn.style.display = 'inline-block';
-    logoutBtn.addEventListener('click', () => {
+  logoutBtns.forEach(btn => {
+    
+    btn.addEventListener('click', () => {
       localStorage.clear();
       window.location.href = '/login.html';
     });
-  }
+  });
 
-  // Oculta o botão de admin se o usuário não for ADMIN
   if (btnAdmin && user.type !== 'ADMIN') {
     btnAdmin.style.display = 'none';
   }
@@ -155,16 +154,32 @@ if (!user) {
     }
     renderProducts(filteredProducts);
   });
+const hamburguerBtn = document.getElementById('hamburguer-btn');
+const menuLateral = document.getElementById('menu-lateral');
+const btnFecharMenu = document.getElementById('close-menu');
 
- const hamburguerBtn = document.getElementById('hamburguer-btn');
-  const menuLateral = document.getElementById('menu-lateral');
+// Abre/fecha o menu com o botão hambúrguer
+hamburguerBtn.addEventListener("click", () => {
+  menuLateral.classList.toggle("open");
+});
 
-if (hamburguerBtn && menuLateral) {
-    hamburguerBtn.addEventListener("click", () => {
-      menuLateral.classList.toggle("open");
-    });
+// Fecha o menu ao clicar fora dele
+document.addEventListener('click', (event) => {
+  if (
+    menuLateral.classList.contains('open') &&
+    !menuLateral.contains(event.target) &&
+    !hamburguerBtn.contains(event.target)
+  ) {
+    menuLateral.classList.remove('open');
   }
+});
 
+// Fecha o menu com o botão "X"
+btnFecharMenu.addEventListener('click', () => {
+  menuLateral.classList.remove('open');
+});
+
+  updateCart();
 
   // Finalmente chama fetch para iniciar o app
   fetchProducts();

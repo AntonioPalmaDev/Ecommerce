@@ -15,18 +15,7 @@ async function fetchProducts() {
 }
 
 
-  function showNotification(message, type) {
-    const notification = document.getElementById('notificacao');
-    if (!notification) return;
-
-    notification.textContent = message;
-    notification.className = type;
-    notification.classList.remove('hidden');
-
-    setTimeout(() => {
-      notification.classList.add('hidden');
-    }, 2000);
-  }
+  
 
   window.updateCart = function() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
